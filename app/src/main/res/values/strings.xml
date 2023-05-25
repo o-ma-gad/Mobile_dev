@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">TeDe</string>
+    <string name="logo_icon">logo</string>
+    <string name="background_theme">background</string>
+    <string name="main_text">MIREA Wizard - твой личный волшебник</string>
+    <string name="offer">Выбери институт и оставь свой отзыв о преподавателях</string>
+    <string name="resume">Оставить отзыв</string>
+    <string name="iii_inst">iii</string>
+    <string name="iit_inst">iit</string>
+    <string name="ikb_inst">ikb</string>
+    <string name="iptip_inst">iptip</string>
+    <string name="iri_inst">iri</string>
+    <string name="itht_inst">itht</string>
+    <string name="itu_inst">itu</string>
 </resources>
