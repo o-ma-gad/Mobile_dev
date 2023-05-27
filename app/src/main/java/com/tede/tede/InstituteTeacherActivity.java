@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.tede.tede.adapter.TeacherListAdapter;
+import com.tede.tede.api.ApiConnection;
 import com.tede.tede.model.Teacher;
 
 import java.net.HttpURLConnection;
@@ -22,26 +23,14 @@ import java.util.List;
 public class InstituteTeacherActivity extends AppCompatActivity {
     RecyclerView teacherRecycler;
     TeacherListAdapter teacherListAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_institute_teacher);
 
-        List<Teacher> teacherList = new ArrayList<>();
-        teacherList.add(new Teacher(423,(float) 23.56, "Абайдуллина А.Г."));
-        teacherList.add(new Teacher(424,(float) 24.56, "Некрасова О.П."));
-        teacherList.add(new Teacher(423,(float) 23.56, "Абайдуллина А.Г."));
-        teacherList.add(new Teacher(424,(float) 24.56, "Некрасова О.П."));
-        teacherList.add(new Teacher(423,(float) 23.56, "Абайдуллина А.Г."));
-        teacherList.add(new Teacher(424,(float) 24.56, "Некрасова О.П."));
-        teacherList.add(new Teacher(423,(float) 23.56, "Абайдуллина А.Г."));
-        teacherList.add(new Teacher(424,(float) 24.56, "Некрасова О.П."));
-        teacherList.add(new Teacher(423,(float) 23.56, "Абайдуллина А.Г."));
-        teacherList.add(new Teacher(424,(float) 24.56, "Некрасова О.П."));
-        teacherList.add(new Teacher(423,(float) 23.56, "Абайдуллина А.Г."));
-
-        
-        setTeacherRecycler(teacherList);
+        ApiConnection apiConnection = new ApiConnection();
+        setTeacherRecycler(apiConnection.getTeachersByInstituteId(1));
 
         ImageView imageView = findViewById(R.id.logoImage);
         imageView.setOnClickListener(new View.OnClickListener() {

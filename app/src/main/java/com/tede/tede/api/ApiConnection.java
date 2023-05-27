@@ -1,19 +1,20 @@
 package com.tede.tede.api;
 
+import android.util.Log;
+
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.tede.tede.model.Teacher;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
+import javax.net.ssl.HttpsURLConnection;
 import java.net.URL;
 import java.util.List;
 
 public class ApiConnection {
 
     private static final String API_URL = "https://mirea-wizard/api/teacher";
-
     //метод, который будет делать запрос и возвращать объект
     public Teacher getOneTeacher(int id) {
         //формируем URL подключения с параметрами
@@ -25,7 +26,7 @@ public class ApiConnection {
             url = new URL(urlString);
 
             //создаем объект HttpURLConnection для отправки запроса
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
             con.setRequestMethod("GET");
 
             //читаем ответ сервера
@@ -50,13 +51,15 @@ public class ApiConnection {
         //формируем URL подключения с параметрами
         String urlString = API_URL + "?instituteId=" + instituteId;
 
+
+
         //создаем объект URL
         URL url;
         try {
             url = new URL(urlString);
 
             //создаем объект HttpURLConnection для отправки запроса
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
             con.setRequestMethod("GET");
 
             //читаем ответ сервера
@@ -66,6 +69,7 @@ public class ApiConnection {
 
             //преобразуем JSON строку в список объектов
             Gson gson = new Gson();
+
             List<Teacher> teachers = gson.fromJson(response, new TypeToken<List<Teacher>>(){}.getType());
 
             return teachers;
