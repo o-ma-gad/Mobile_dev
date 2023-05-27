@@ -36,14 +36,18 @@ public class InstituteTeacherActivity extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switcher = new Intent(InstituteTeacherActivity.this, MainActivity.class);
+                Intent switcher = new Intent(
+                        InstituteTeacherActivity.this, MainActivity.class
+                );
                 InstituteTeacherActivity.this.startActivity(switcher);
             }
         });
     }
 
     private void setTeacherRecycler(List<Teacher> teacherList) {
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(
+                this, RecyclerView.VERTICAL, false
+        );
 
         teacherRecycler = findViewById(R.id.teacherRecycler);
         teacherRecycler.setLayoutManager(layoutManager);

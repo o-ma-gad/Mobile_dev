@@ -35,7 +35,6 @@ public class TeacherListAdapter extends RecyclerView.Adapter<TeacherListAdapter.
     public void onBindViewHolder(@NonNull TeacherViewHolder holder, int position) {
         holder.teacherImage.setImageResource(R.drawable.ded_logo);
         holder.fullName.setText(teachers.get(position).getFullName());
-        holder.rating.setText(String.valueOf(teachers.get(position).getRating()));
     }
 
     @Override

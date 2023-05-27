@@ -1,14 +1,22 @@
 package com.tede.tede.model;
 
+import java.time.DateTimeException;
+
 public class Teacher {
 
     int id;
-    float rating;
+    String lastName;
     String fullName;
-    public Teacher(int id, float rating, String fullName) {
+    String img;
+    DateTimeException createdAt;
+    DateTimeException updatedAt;
+
+    public Teacher(int id, String fullName/*, String img, DateTimeException createdAt, DateTimeException updatedAt*/) {
         this.id = id;
-        this.rating = rating;
         this.fullName = fullName;
+       /* this.img = img;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;*/
     }
 
     public int getId() {
@@ -17,14 +25,6 @@ public class Teacher {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getRating() {
-        return (int) rating;
-    }
-
-    public void setRating(float rating) {
-        this.rating = rating;
     }
 
     public String getFullName() {

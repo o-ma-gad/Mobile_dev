@@ -4,12 +4,17 @@ import android.util.Log;
 
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.tede.tede.model.Teacher;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import javax.net.ssl.HttpsURLConnection;
+
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ApiConnection {
@@ -47,37 +52,33 @@ public class ApiConnection {
         return null;
     }
 
+
     public List<Teacher> getTeachersByInstituteId(int instituteId) {
-        //формируем URL подключения с параметрами
         String urlString = API_URL + "?instituteId=" + instituteId;
-
-
-
-        //создаем объект URL
         URL url;
         try {
             url = new URL(urlString);
-
-            //создаем объект HttpURLConnection для отправки запроса
             HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
             con.setRequestMethod("GET");
 
-            //читаем ответ сервера
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String response = in.readLine();
-            in.close();
+            try (BufferedReader in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()))
+            ) {
+                String response = in.readLine();
+                Gson gson = new Gson();
 
-            //преобразуем JSON строку в список объектов
-            Gson gson = new Gson();
-
-            List<Teacher> teachers = gson.fromJson(response, new TypeToken<List<Teacher>>(){}.getType());
-
-            return teachers;
-
-        } catch (Exception e) {
+                List<Teacher> teachers = gson.fromJson(response, new TypeToken<List<Teacher>>(){}.getType());
+                return teachers;
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JsonSyntaxException e) {
             e.printStackTrace();
         }
 
-        return null;
+        // возвращаем пустой список вместо null
+        return new ArrayList<Teacher>();
     }
 }
