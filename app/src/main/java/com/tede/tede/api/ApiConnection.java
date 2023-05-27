@@ -6,7 +6,7 @@ import com.tede.tede.model.Teacher;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
+import javax.net.ssl.HttpsURLConnection;
 import java.net.URL;
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class ApiConnection {
             url = new URL(urlString);
 
             //создаем объект HttpURLConnection для отправки запроса
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
             con.setRequestMethod("GET");
 
             //читаем ответ сервера
@@ -56,7 +56,7 @@ public class ApiConnection {
             url = new URL(urlString);
 
             //создаем объект HttpURLConnection для отправки запроса
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
             con.setRequestMethod("GET");
 
             //читаем ответ сервера
