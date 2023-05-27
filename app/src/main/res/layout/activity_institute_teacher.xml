@@ -13,6 +13,7 @@
         android:layout_height="0dp"
         android:contentDescription="@string/background_theme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/background"
@@ -55,10 +56,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instituteSpinner"
+        app:layout_constraintTop_toBottomOf="@id/instituteSpinner"
         app:spanCount="2"
         tools:listitem="@layout/teacher_plane" />
 

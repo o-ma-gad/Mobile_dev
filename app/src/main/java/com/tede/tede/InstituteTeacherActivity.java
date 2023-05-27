@@ -14,11 +14,12 @@ import android.widget.ImageView;
 import com.tede.tede.adapter.TeacherListAdapter;
 import com.tede.tede.model.Teacher;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class InstituteTeacherActivity extends AppCompatActivity {
-
     RecyclerView teacherRecycler;
     TeacherListAdapter teacherListAdapter;
     @Override
@@ -54,6 +55,8 @@ public class InstituteTeacherActivity extends AppCompatActivity {
 
     private void setTeacherRecycler(List<Teacher> teacherList) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+
+        teacherRecycler = findViewById(R.id.teacherRecycler);
         teacherRecycler.setLayoutManager(layoutManager);
 
         teacherListAdapter = new TeacherListAdapter(this, teacherList);
