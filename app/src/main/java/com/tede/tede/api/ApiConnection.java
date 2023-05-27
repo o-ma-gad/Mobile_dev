@@ -1,4 +1,4 @@
-package com.tede.tede.request;
+package com.tede.tede.api;
 
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
