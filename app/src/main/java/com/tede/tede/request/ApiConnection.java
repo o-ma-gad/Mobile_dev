@@ -1,40 +1,46 @@
 package com.tede.tede.request;
 
+import com.google.gson.Gson;
+import com.tede.tede.model.Teacher;
+
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ApiConnection {
-    public static void main(String[] args) {
+
+    private static final String API_URL = "https://mirea-wizard/api/teacher";
+
+    //метод, который будет делать запрос и возвращать объект
+    public Teacher getTeacher(int instituteId) {
+        //формируем URL подключения с параметрами
+        String urlString = API_URL + "?instituteId=" + instituteId;
+
+        //создаем объект URL
+        URL url;
         try {
+            url = new URL(urlString);
 
-            // Create connection to the API end point, by default used GET method
-            URL address = new URL("http://90.156.209.38/api/");
-            HttpURLConnection connection = (HttpURLConnection) address.openConnection();
-            connection.connect();
+            //создаем объект HttpURLConnection для отправки запроса
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
 
-
-            // Set up input stream to read data from the server
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-            // Print server response to terminal
-            String line;
-            while ((line = in.readLine()) != null) {
-                System.out.println(line);
-            }
-
-            // Close input stream after work is done
+            //читаем ответ сервера
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String response = in.readLine();
             in.close();
 
-        } catch (MalformedURLException e) {
-            System.out.println("Wrong URL address");
-        } catch (IOException e) {
-            System.out.println("Download error " + e.getMessage());
+            //преобразуем JSON строку в объект
+            Gson gson = new Gson();
+            Teacher teacher = gson.fromJson(response, Teacher.class);
+
+            return teacher;
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        return null;
     }
 }
